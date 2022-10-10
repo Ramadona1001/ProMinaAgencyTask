@@ -6,6 +6,7 @@
 <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/modal.js') }}"></script>
+@yield('scripts')
 <script>
     $(document).ready(function(){
         $('.success_msg').fadeOut(10000);

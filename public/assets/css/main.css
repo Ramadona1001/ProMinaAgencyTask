@@ -1297,3 +1297,7 @@
   .footer .credits a {
     color: var(--color-primary);
   }
+
+  .dz-default button{
+    color: black !important;
+  }

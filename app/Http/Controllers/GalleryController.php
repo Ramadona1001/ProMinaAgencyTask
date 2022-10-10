@@ -34,12 +34,12 @@ class GalleryController extends Controller
         $gallery->user_id = auth()->user()->id;
         $gallery->save();
 
-        return redirect()->route('gallery.index')->with('album_success','Album is created successfully');
+        return redirect()->route('gallery.index')->with('success','Album is created successfully');
     }
 
     public function show(Gallery $gallery)
     {
-        //
+        return view('gallery.show',compact('gallery'));
     }
 
     public function edit(Gallery $gallery)
@@ -57,12 +57,22 @@ class GalleryController extends Controller
         $gallery->user_id = auth()->user()->id;
         $gallery->save();
 
-        return redirect()->route('gallery.index')->with('album_success','Album is updated successfully');
+        return redirect()->route('gallery.index')->with('success','Album is updated successfully');
+    }
+
+    public function move(Gallery $gallery,Request $request)
+    {
+        for ($i = 0; $i < $gallery->getMedia()->count(); $i++){
+           $gallery->getMedia()[$i]->model_id = $request->album_name;
+           $gallery->getMedia()[$i]->save();
+        }
+        return redirect()->route('gallery.index')->with('success','Album is moved successfully');
     }
 
     public function destroy(Gallery $gallery)
     {
+        $gallery->clearMediaCollection();
         $gallery->delete();
-        return redirect()->route('gallery.index')->with('album_success','Album is deleted successfully');
+        return redirect()->route('gallery.index')->with('success','Album is deleted successfully');
     }
 }

@@ -7,9 +7,9 @@
 
     <section id="services" class="services">
         <div class="container">
-        @if (Session::has('album_success'))
+        @if (Session::has('success'))
             <div class="alert alert-success success_msg">
-                {{ Session::get('album_success') }}
+                {{ Session::get('success') }}
             </div>
         @endif
           <div class="row">
